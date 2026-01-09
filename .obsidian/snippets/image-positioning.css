@@ -1,32 +1,32 @@
 /*
-CSS Snippet for advanced image positioning in Obsidian (v2 - Robust)
+CSS Snippet for advanced image positioning in Obsidian (v3 - Top Aligned)
 Creator: Jules
 Instructions:
-- This version is designed to be more robust and avoid conflicts with themes.
-- It ONLY handles positioning. Resizing should be done with another plugin.
-- Use the syntax in your notes: ![[image.png|left]] or ![[image.png|right]]
-- To stop text from wrapping and start a new line below the image, simply add a horizontal rule `---` on a new line.
+- This version fixes the vertical alignment issue where text would start at the bottom of the image.
+- Use the syntax: ![[image.png|left]] or ![[image.png|right]]
+- To stop text from wrapping, use a horizontal rule `---` on a new line.
 */
 
 /* Target embedded images within the preview mode more specifically */
 .markdown-preview-view .internal-embed[alt*="left"],
 .markdown-preview-view .internal-embed[alt*="right"] {
-    /* Set a max-width to prevent very large images from breaking the layout */
     max-width: 75%;
+    /* THIS IS THE FIX: Add a small top margin to align the first line of text with the top of the image */
+    margin-top: 5px;
 }
 
 /* Align image to the LEFT with text wrapping */
 .markdown-preview-view .internal-embed[alt*="left"] {
     float: left;
-    margin-right: 1.5em; /* Space between image and text */
-    margin-bottom: 0.8em; /* Space below the image */
+    margin-right: 1.5em;
+    margin-bottom: 0.8em;
 }
 
 /* Align image to the RIGHT with text wrapping */
 .markdown-preview-view .internal-embed[alt*="right"] {
     float: right;
-    margin-left: 1.5em; /* Space between image and text */
-    margin-bottom: 0.8em; /* Space below the image */
+    margin-left: 1.5em;
+    margin-bottom: 0.8em;
 }
 
 /* Align image to the CENTER (no text wrapping) */
@@ -36,21 +36,19 @@ Instructions:
     margin-right: auto;
     float: none;
     max-width: 100%;
+    margin-top: 5px; /* Also apply here for consistency */
 }
 
 
 /* --- CLEARFIX --- */
-/* This is the most important part to prevent text from "flowing under" the image.
-   A horizontal rule (---) will now act as a barrier. */
 .markdown-preview-view hr {
     clear: both;
-    visibility: hidden; /* Hide the rule itself if you just want to use it as a separator */
+    visibility: hidden;
     margin: 0;
     padding: 0;
     border: none;
 }
 
-/* A general clearfix for the container to handle edge cases */
 .markdown-preview-view .markdown-preview-sizer::after {
     content: "";
     display: table;
