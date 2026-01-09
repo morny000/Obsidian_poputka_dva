@@ -1,0 +1,50 @@
+/*
+CSS Snippet for advanced image control in Obsidian
+Creator: Jules
+Instructions:
+1. Place this file in your vault's .obsidian/snippets/ directory.
+2. Enable it in Obsidian under Settings > Appearance > CSS Snippets.
+3. Use the syntax in your notes: ![[image.png|keyword|width]]
+   - `left`: floats the image to the left, text wraps around.
+   - `right`: floats the image to the right, text wraps around.
+   - `center`: centers the image, text does not wrap.
+*/
+
+/* Clearfix for containers to prevent layout issues with floated images */
+.markdown-preview-view:after,
+.markdown-source-view .cm-scroller:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Base styling for all images for consistency */
+img {
+    display: block; /* Ensures margins work correctly */
+    max-width: 100%; /* Prevents images from overflowing their container */
+    height: auto; /* Maintains aspect ratio */
+}
+
+/* --- ALIGNMENT CLASSES USING ALT TEXT --- */
+
+/* Align image to the LEFT with text wrapping */
+img[alt*="left"] {
+    float: left;
+    margin-right: 15px; /* Space between image and text */
+    margin-bottom: 10px; /* Space below the image */
+}
+
+/* Align image to the RIGHT with text wrapping */
+img[alt*="right"] {
+    float: right;
+    margin-left: 15px; /* Space between image and text */
+    margin-bottom: 10px; /* Space below the image */
+}
+
+/* Align image to the CENTER (no text wrapping) */
+img[alt*="center"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    float: none; /* Ensure no floating */
+}
